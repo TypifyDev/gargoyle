@@ -1,8 +1,28 @@
--- | Utilities for running a daemon in a local directory
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE MultiWayIf #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
+-----------------------------------------------------------------------------
+-- |
+-- Module      :  Gargoyle
+-- Copyright   :  (c) Obsidian Systems LLC
+-- License     :  BSD3
+--
+-- Maintainer  :  maintainer@obsidian.systems
+--
+-- Daemon lifecycle management over Unix domain sockets.
+--
+--   The 'Gargoyle' record describes how to initialise, start, stop,
+--   and query a local daemon.  'withGargoyle' is the client entry
+--   point: it connects to the daemon\'s Unix socket (spawning a
+--   monitor process if needed) and keeps the connection open for the
+--   duration of the callback, ensuring the daemon stays alive while
+--   any client is connected.  'gargoyleMain' is the monitor\'s main
+--   function: it holds an exclusive file lock, accepts client
+--   connections, and shuts the daemon down when the last client
+--   disconnects.
+--
+-----------------------------------------------------------------------------
 module Gargoyle
   ( Gargoyle (..)
   , withGargoyle

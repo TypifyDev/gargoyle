@@ -1,4 +1,23 @@
 {-# LANGUAGE OverloadedStrings #-}
+-----------------------------------------------------------------------------
+-- |
+-- Module      :  Gargoyle.PostgreSQL
+-- Copyright   :  (c) Obsidian Systems LLC
+-- License     :  BSD3
+--
+-- Maintainer  :  maintainer@obsidian.systems
+--
+-- PostgreSQL-specific 'Gargoyle' implementation.
+--
+--   Provides 'defaultPostgres' (assumes @pg_ctl@ on PATH) and the
+--   lower-level 'mkPostgresGargoyle' for custom installations.
+--   Handles @initdb@, startup with Unix-socket-only listening,
+--   smart\/fast\/immediate shutdown modes, and connection-string
+--   generation.  Also includes 'psqlLocal' and
+--   'runPgLocalWithSubstitution' for running CLI tools against a
+--   Gargoyle-managed database.
+--
+-----------------------------------------------------------------------------
 module Gargoyle.PostgreSQL where
 
 import Control.Monad

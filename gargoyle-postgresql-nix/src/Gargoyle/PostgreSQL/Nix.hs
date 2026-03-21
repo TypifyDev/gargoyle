@@ -1,5 +1,21 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell   #-}
+-----------------------------------------------------------------------------
+-- |
+-- Module      :  Gargoyle.PostgreSQL.Nix
+-- Copyright   :  (c) Obsidian Systems LLC
+-- License     :  BSD3
+--
+-- Maintainer  :  maintainer@obsidian.systems
+--
+-- Nix-integrated PostgreSQL 'Gargoyle'.
+--
+--   'postgresNix' creates a 'Gargoyle' that resolves the @pg_ctl@
+--   binary path at compile time via 'staticWhich' and locates its
+--   own monitor executable from the Nix-installed @bin/@ directory.
+--   This avoids runtime PATH dependencies on PostgreSQL.
+--
+-----------------------------------------------------------------------------
 module Gargoyle.PostgreSQL.Nix where
 
 import Data.ByteString (ByteString)

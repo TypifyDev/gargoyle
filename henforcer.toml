@@ -1,0 +1,3 @@
+[module-header-enforcement]
+maximumExportsPlusHeaderUndocumented = 0
+requiredHeaderFields = ["Module", "Description"]

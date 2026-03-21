@@ -1,4 +1,22 @@
 {-# LANGUAGE TypeApplications #-}
+-----------------------------------------------------------------------------
+-- |
+-- Module      :  Gargoyle.PostgreSQL.Connect
+-- Copyright   :  (c) Obsidian Systems LLC
+-- License     :  BSD3
+--
+-- Maintainer  :  maintainer@obsidian.systems
+--
+-- Connection-pooling convenience for Gargoyle-managed PostgreSQL.
+--
+--   'withDb' and 'withDb'' accept a path that is either a file
+--   containing a connection string (for remote databases) or a
+--   directory (for a local Gargoyle-managed instance).  In the local
+--   case the database is automatically initialised and started via
+--   'postgresNix'.  'openDb' converts a connection string into a
+--   @resource-pool@ 'Pool' of @postgresql-simple@ 'Connection's.
+--
+-----------------------------------------------------------------------------
 module Gargoyle.PostgreSQL.Connect (withDb, withDb', openDb) where
 
 import Control.Monad ((>=>))
